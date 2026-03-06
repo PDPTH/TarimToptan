@@ -27,4 +27,4 @@
 
 1. [Suleyman'in Gereksinimleri](Suleyman-Bugra-Cetin/Suleyman-Gereksinimler.md)
 2. [Umut'un Gereksinimleri](umut-can-bayar/umut-can-bayar-Gereksinimler.md)
-3. [Aykan'in Gereksinimleri](Aykhan Bayramov/Aykhan-Bayramov-Gereksinimler.md)
+3. [Aykan'in Gereksinimleri](Aykhan-Bayramov/Aykhan-Bayramov-Gereksinimler.md)
