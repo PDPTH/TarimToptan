@@ -1,28 +1,29 @@
-15. **Sepete Ürün Ekleme**
+1. **Sepete Ürün Ekleme**
     - **API Metodu:** `POST /cart/items`
     - **Açıklama:** Kullanıcıların seçtikleri ürünleri alışveriş sepetine eklemesini sağlar. Kullanıcılar satın almak istedikleri ürünleri sepete ekleyebilir.
 
-16. **Sepetten Ürün Çıkarma**
+2. **Sepetten Ürün Çıkarma**
     - **API Metodu:** `DELETE /cart/items/{itemId}`
     - **Açıklama:** Kullanıcının alışveriş sepetinde bulunan bir ürünü kaldırmasını sağlar.
 
-17. **Sepeti Görüntüleme**
+3. **Sepeti Görüntüleme**
     - **API Metodu:** `GET /cart`
     - **Açıklama:** Kullanıcının alışveriş sepetinde bulunan tüm ürünleri görüntülemesini sağlar. Sepetteki ürünlerin toplam fiyatı da kullanıcıya gösterilebilir.
 
-18. **Sipariş Oluşturma**
+4. **Sipariş Oluşturma**
     - **API Metodu:** `POST /orders`
     - **Açıklama:** Kullanıcıların alışveriş sepetindeki ürünleri satın alarak sipariş oluşturmasını sağlar. Sipariş oluşturulduktan sonra ödeme ve teslimat işlemleri başlatılır.
 
-19. **Sipariş İptal Etme**
+5. **Sipariş İptal Etme**
     - **API Metodu:** `DELETE /orders/{orderId}`
     - **Açıklama:** Kullanıcının daha önce oluşturduğu bir siparişi iptal etmesini sağlar. Sipariş henüz gönderilmemişse iptal işlemi gerçekleştirilebilir.
 
-20. **Teslimat Adresi Ekleme**
+6. **Teslimat Adresi Ekleme**
     - **API Metodu:** `POST /addresses`
     - **Açıklama:** Kullanıcıların siparişlerinde kullanmak üzere yeni bir teslimat adresi eklemesini sağlar.
 
-21. **Teslimat Adresi Güncelleme**
+7. **Teslimat Adresi Güncelleme**
     - **API Metodu:** `PUT /addresses/{addressId}`
     - **Açıklama:** Kullanıcının daha önce eklediği teslimat adresini güncellemesini sağlar.
+
 
