@@ -22,8 +22,9 @@
 20. Teslimat adresi ekleme 
 21. Teslimat adresi güncelleme 
 
+
 # Gereksinim Dağılımları
 
 1. [Suleyman'in Gereksinimleri](Ali-Tutar/Ali-Tutar-Gereksinimler.md)
-2. [Umut'un Gereksinimleri](Grup-Uyesi-2/Grup-Uyesi-2-Gereksinimler.md)
+2. [Umut'un Gereksinimleri](umut-can-bayar/umut-can-bayar-Gereksinimler.md)
 3. [Aykan'in Gereksinimleri](Grup-Uyesi-3/Grup-Uyesi-3-Gereksinimler.md)
