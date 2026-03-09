@@ -41,7 +41,7 @@ USA
 Proje dokümantasyonuna aşağıdaki linklerden erişebilirsiniz:
 
 1. [Gereksinim Analizi](Gereksinim-Analizi.md)
-2. [REST API Tasarımı](API-Tasarimi.md)
+2. [REST API Tasarımı](API-tasarimi.md)
 3. [REST API](Rest-API.md)
 4. [Web Front-End](WebFrontEnd.md)
 5. [Mobil Front-End](MobilFrontEnd.md)
