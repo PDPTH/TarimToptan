@@ -1,6 +1,6 @@
 # API Tasarımı - OpenAPI Specification
 
-**OpenAPI Spesifikasyon Dosyası:** [openapi.yaml](lamine.yml)
+**OpenAPI Spesifikasyon Dosyası:** [openapi.yml](lamine.yml)
 
 Bu doküman, OpenAPI Specification (OAS) 3.0.3 standardına göre hazırlanmış tarım ürünleri e-ticaret sistemi API tasarımını içermektedir.
 
