@@ -1,1 +1,191 @@
+# Aykhan Bayramov'un Web Frontend Görevleri
+**Front-end Test Videosu:** [Link buraya eklenecek](https://example.com)
 
+## 1. Sepete Ürün Ekleme
+- **API Endpoint:** `POST /cart/items`
+- **Görev:** Kullanıcıların seçtikleri ürünleri alışveriş sepetine eklemesini sağlayan web bileşeni tasarımı ve implementasyonu. Kullanıcılar satın almak istedikleri ürünleri sepete ekleyebilir.
+- **UI Bileşenleri:**
+  - "Sepete Ekle" butonu (ürün detay sayfasında, accent button style, FiShoppingCart ikonu)
+  - Miktar seçici bileşeni (−/+ butonları ile miktar artırma/azaltma)
+  - Miktar gösterimi (seçilen miktar sayısı)
+  - Loading state (ekleme sırasında "Ekleniyor..." text)
+  - Stok sınırı kontrolü (maksimum stok miktarına kadar artırma)
+- **Kullanıcı Deneyimi:**
+  - Miktar seçildikten sonra tek tıkla sepete ekleme
+  - Başarılı ekleme sonrası success notification (toast: "Ürün sepete eklendi!")
+  - Giriş yapmamış kullanıcılar için uyarı mesajı (toast: "Sepete eklemek için giriş yapmalısınız")
+  - Stok tükenmiş ürünlerde buton gizlenmesi
+  - Hover efektleri ve micro-animations
+  - Double-click koruması (disabled state)
+- **Teknik Detaylar:**
+  - addToCart API fonksiyonu (productId, quantity parametreleri)
+  - Auth kontrolü (isAuthenticated check)
+  - Ürün detay sayfası (ProductDetailPage) içinde entegre
+  - Error handling (API hatalarında toast error mesajı)
+  - State management (quantity, addingToCart states)
+
+## 2. Sepetten Ürün Çıkarma
+- **API Endpoint:** `DELETE /cart/items/{itemId}`
+- **Görev:** Kullanıcının alışveriş sepetinde bulunan bir ürünü kaldırmasını sağlayan web bileşeni tasarımı ve implementasyonu.
+- **UI Bileşenleri:**
+  - "Sil" butonu (her sepet öğesi yanında, danger button, FiTrash2 ikonu)
+  - Sepet öğesi satırı (ürün bilgisi + sil butonu)
+  - Loading indicator (silme işlemi sırasında)
+- **Kullanıcı Deneyimi:**
+  - Tek tıkla sepetten çıkarma (onay sorulmaz, hızlı işlem)
+  - Başarılı çıkarma sonrası success notification (toast: "Ürün sepetten çıkarıldı")
+  - Sepet otomatik yenileme (silme sonrası güncel liste)
+  - Hata durumunda error mesajı
+- **Teknik Detaylar:**
+  - removeFromCart API fonksiyonu (itemId parametresi)
+  - Sepet sayfası (CartPage) içinde entegre
+  - Silme sonrası fetchCart ile sepeti yeniden yükleme
+  - Error handling
+
+## 3. Sepeti Görüntüleme Sayfası
+- **API Endpoint:** `GET /cart`
+- **Görev:** Kullanıcının alışveriş sepetinde bulunan tüm ürünleri görüntülemeyi sağlayan web sayfası tasarımı ve implementasyonu. Sepetteki ürünlerin toplam fiyatı da kullanıcıya gösterilir.
+- **UI Bileşenleri:**
+  - Responsive sepet layout (sol: ürün listesi, sağ: sipariş özeti)
+  - Sepet öğeleri kartı (her öğe için):
+    - Ürün emojisi/görseli
+    - Ürün adı
+    - Miktar × birim fiyat bilgisi
+    - Toplam fiyat (ürün bazında)
+    - Sil butonu (FiTrash2 ikonu)
+  - Sipariş özeti kartı:
+    - Ürün toplamı
+    - Kargo bilgisi ("Ücretsiz" badge)
+    - Genel toplam (accent renk, büyük font)
+    - "Siparişi Tamamla" butonu (accent button, FiArrowRight ikonu)
+  - Empty state (sepet boşsa):
+    - 🛒 ikonu
+    - "Sepetiniz boş" başlığı
+    - "Ürünleri Keşfet" butonu (/products'a yönlendirme)
+  - Loading spinner (veri yüklenirken)
+  - Sepetteki ürün sayısı gösterimi
+- **Kullanıcı Deneyimi:**
+  - Protected route (giriş yapılmamışsa login'e yönlendirme)
+  - Sepet boşsa keşfet butonuyla ürünlere yönlendirme
+  - Toplam fiyat otomatik hesaplanması
+  - "Siparişi Tamamla" ile checkout sayfasına yönlendirme
+  - Responsive tasarım (mobilde üst-alt düzen)
+- **Teknik Detaylar:**
+  - getCart API fonksiyonu
+  - Protected route (ProtectedRoute bileşeni)
+  - State management (cart, loading states)
+  - Routing: /cart → /checkout navigasyonu
+  - Fiyat formatlama (toFixed(2))
+
+## 4. Sipariş Oluşturma Sayfası (Checkout)
+- **API Endpoint:** `POST /orders`
+- **Görev:** Kullanıcıların alışveriş sepetindeki ürünleri satın alarak sipariş oluşturmasını sağlayan web sayfası tasarımı ve implementasyonu. Sipariş oluşturulduktan sonra teslimat adresi ve sipariş detayları kaydedilir.
+- **UI Bileşenleri:**
+  - Checkout layout (sol: teslimat adresi formu, sağ: sipariş özeti)
+  - Teslimat adresi formu:
+    - Adres başlığı select (Ev, İş, Diğer)
+    - Ad Soyad input alanı (zorunlu)
+    - Telefon input alanı
+    - İl input alanı (zorunlu)
+    - İlçe input alanı
+    - Adres satırı textarea (zorunlu)
+    - Posta kodu input alanı
+  - Sipariş özeti kartı:
+    - Her ürün satırı (ad × miktar, fiyat)
+    - Kargo bilgisi
+    - Genel toplam
+    - "Siparişi Onayla" butonu (accent button, FiCheck ikonu)
+  - Sipariş başarı ekranı:
+    - ✅ ikonu
+    - "Siparişiniz Alındı!" başlığı
+    - Sipariş numarası
+    - Sipariş durumu badge
+    - "Alışverişe Devam Et" butonu
+    - "Siparişi İptal Et" butonu
+- **Kullanıcı Deneyimi:**
+  - Adres formu doldurulduktan sonra sipariş oluşturma
+  - Adres bilgileri zorunlu alan kontrolü
+  - Başarılı sipariş sonrası başarı ekranı gösterilmesi
+  - Hata durumunda error mesajı
+  - Sipariş oluşturulana kadar loading state
+- **Teknik Detaylar:**
+  - İki aşamalı işlem: (1) createAddress → (2) createOrder
+  - getCart ile sepet verisi çekme
+  - Protected route
+  - State management (cart, addressForm, orderCreated, submitting states)
+  - Adres ve sipariş API entegrasyonu
+
+## 5. Sipariş İptal Etme
+- **API Endpoint:** `DELETE /orders/{orderId}`
+- **Görev:** Kullanıcının daha önce oluşturduğu bir siparişi iptal etmesini sağlayan web bileşeni tasarımı ve implementasyonu. Sipariş henüz gönderilmemişse iptal işlemi gerçekleştirilebilir.
+- **UI Bileşenleri:**
+  - "Siparişi İptal Et" butonu (checkout başarı ekranında, danger button style)
+  - İptal onay mekanizması
+  - Loading indicator (iptal işlemi sırasında)
+- **Kullanıcı Deneyimi:**
+  - Sipariş başarı ekranında iptal seçeneği
+  - Başarılı iptal sonrası success notification ve sepet sayfasına yönlendirme
+  - Hata durumunda error mesajı
+  - İptal sonrası sipariş başarı ekranı kapanır
+- **Teknik Detaylar:**
+  - cancelOrder API fonksiyonu (PATCH /orders/{orderId}/cancel)
+  - Checkout sayfası içinde entegre
+  - Navigate ile /cart sayfasına yönlendirme
+  - Error handling
+
+## 6. Teslimat Adresi Ekleme Sayfası
+- **API Endpoint:** `POST /addresses`
+- **Görev:** Kullanıcıların siparişlerinde kullanmak üzere yeni bir teslimat adresi eklemesini sağlayan web sayfası tasarımı ve implementasyonu.
+- **UI Bileşenleri:**
+  - "Yeni Adres" butonu (sayfa üstünde, primary button, FiPlus ikonu)
+  - Adres ekleme formu (açılır/kapanır):
+    - Adres başlığı select (Ev, İş, Diğer)
+    - Ad Soyad input alanı (zorunlu)
+    - Telefon input alanı
+    - İl input alanı (zorunlu)
+    - İlçe input alanı
+    - Posta kodu input alanı (zorunlu)
+    - Adres satırı textarea (zorunlu)
+  - "Ekle" butonu (primary button, FiSave ikonu)
+  - "İptal" butonu (secondary button)
+  - Adres listesi (eklenen adresler kartlar halinde)
+  - Her adres kartında:
+    - Adres başlığı (bold)
+    - Ad soyad, adres detayı, il/ilçe, posta kodu, telefon
+    - "Düzenle" butonu (FiEdit ikonu)
+  - Empty state (adres yoksa placeholder mesaj ve 📍 ikonu)
+- **Form Validasyonu:**
+  - Ad soyad, il, adres satırı ve posta kodu zorunlu alan kontrolü
+  - Real-time validation feedback
+  - Inline error mesajları
+- **Kullanıcı Deneyimi:**
+  - "Yeni Adres" butonuna tıklayınca form açılır
+  - Başarılı ekleme sonrası success notification ve form kapanır
+  - Adres listesi otomatik güncellenir
+  - İptal ile form kapanır, veriler sıfırlanır
+- **Teknik Detaylar:**
+  - createAddress API fonksiyonu
+  - Protected route
+  - Toggle state (showForm)
+  - State management (addresses, form, editId, loading)
+  - Adres listesi local state yönetimi
+
+## 7. Teslimat Adresi Güncelleme
+- **API Endpoint:** `PUT /addresses/{addressId}`
+- **Görev:** Kullanıcının daha önce eklediği teslimat adresini güncellemesini sağlayan web bileşeni tasarımı ve implementasyonu.
+- **UI Bileşenleri:**
+  - "Düzenle" butonu (her adres kartında, secondary button, FiEdit ikonu)
+  - Düzenleme formu (ekleme formu ile aynı yapı, mevcut değerlerle dolu)
+  - "Güncelle" butonu (primary button)
+  - "İptal" butonu (secondary button)
+- **Kullanıcı Deneyimi:**
+  - Adres kartındaki "Düzenle" butonuna tıklayınca form açılır ve mevcut değerlerle dolar
+  - Başarılı güncelleme sonrası success notification ve form kapanır
+  - Adres listesi otomatik güncellenir
+  - İptal ile form kapanır, değişiklikler geri alınır
+- **Teknik Detaylar:**
+  - updateAddress API fonksiyonu (addressId, addressData parametreleri)
+  - Form pre-population (mevcut adres bilgileriyle doldurma)
+  - editId state ile düzenleme modu yönetimi
+  - Adres listesi local state güncelleme (map ile ilgili adresi değiştirme)
+  - Error handling
