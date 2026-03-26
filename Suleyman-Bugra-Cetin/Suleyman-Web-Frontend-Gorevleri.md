@@ -1,1 +1,184 @@
+# Süleyman Buğra Çetin'in Web Frontend Görevleri
+**Front-end Test Videosu:** [Link buraya eklenecek](https://example.com)
 
+## 1. Üye Olma (Kayıt) Sayfası
+- **API Endpoint:** `POST /auth/register`
+- **Görev:** Kullanıcıların yeni hesaplar oluşturarak sisteme kayıt olmasını sağlayan web sayfası tasarımı ve implementasyonu. Kişisel bilgilerin toplanmasını ve hesap oluşturma işlemlerini içerir. Kullanıcılar email adresi ve şifre belirleyerek hesap oluşturur.
+- **UI Bileşenleri:**
+  - Responsive kayıt formu (desktop ve mobile uyumlu)
+  - Email input alanı (type="email", autocomplete="email")
+  - Şifre input alanı (type="password", şifre gücü göstergesi)
+  - Şifre tekrar input alanı (doğrulama için)
+  - Ad (firstName) input alanı (autocomplete="given-name")
+  - Soyad (lastName) input alanı (autocomplete="family-name")
+  - "Kayıt Ol" butonu (primary button style)
+  - "Zaten hesabınız var mı? Giriş Yap" linki
+  - Loading spinner (kayıt işlemi sırasında)
+  - Form container (card veya centered layout)
+- **Form Validasyonu:**
+  - HTML5 form validation (required, pattern attributes)
+  - JavaScript real-time validation
+  - Email format kontrolü (regex pattern)
+  - Şifre güvenlik kuralları (min 8 karakter, büyük/küçük harf, rakam)
+  - Şifre eşleşme kontrolü
+  - Ad ve soyad boş olamaz kontrolü
+  - Tüm alanlar geçerli olmadan buton disabled
+  - Client-side ve server-side validation
+- **Kullanıcı Deneyimi:**
+  - Form hatalarını input altında gösterilmesi (inline validation)
+  - Başarılı kayıt sonrası success notification ve otomatik giriş sayfasına yönlendirme
+  - Hata durumlarında kullanıcı dostu mesajlar (409 Conflict: "Bu email zaten kullanılıyor")
+  - Form submission prevention (double-click koruması)
+  - Accessible form labels ve ARIA attributes
+  - Keyboard navigation desteği (Tab, Enter)
+- **Teknik Detaylar:**
+  - Framework: React + Vite
+  - State management (form state, loading state, error state)
+  - Routing: React Router v6 (kayıt sayfasından giriş sayfasına geçiş)
+  - SEO optimization (meta tags, structured data)
+  - Accessibility (WCAG 2.1 AA compliance)
+
+## 2. Giriş Yapma Sayfası
+- **API Endpoint:** `POST /auth/login`
+- **Görev:** Kullanıcıların mevcut hesap bilgileri ile sisteme giriş yapmasını sağlayan web sayfası tasarımı ve implementasyonu. Kullanıcılar email ve şifre bilgilerini girerek kimlik doğrulaması yapar. Doğrulama başarılı olduğunda JWT token alınır ve kullanıcı sisteme erişebilir.
+- **UI Bileşenleri:**
+  - Responsive giriş formu (desktop ve mobile uyumlu)
+  - Email input alanı (type="email", autocomplete="email")
+  - Şifre input alanı (type="password")
+  - "Giriş Yap" butonu (primary button style)
+  - "Şifremi Unuttum" linki (şifre sıfırlama sayfasına yönlendirme)
+  - "Hesabınız yok mu? Kayıt Olun" linki
+  - Loading spinner (giriş işlemi sırasında)
+  - Form container (card veya centered layout)
+- **Form Validasyonu:**
+  - HTML5 form validation (required attributes)
+  - Email format kontrolü (regex pattern)
+  - Şifre boş olamaz kontrolü
+  - Tüm alanlar geçerli olmadan buton disabled
+- **Kullanıcı Deneyimi:**
+  - Form hatalarını input altında gösterilmesi (inline validation)
+  - Başarılı giriş sonrası success notification ve ana sayfaya yönlendirme
+  - Hata durumlarında kullanıcı dostu mesajlar (401: "Email veya şifre hatalı")
+  - JWT token'ın localStorage'a kaydedilmesi
+  - Form submission prevention (double-click koruması)
+  - Keyboard navigation desteği (Tab, Enter)
+- **Teknik Detaylar:**
+  - JWT token management (localStorage)
+  - AuthContext entegrasyonu (global authentication state)
+  - Axios interceptor ile token ekleme (Authorization: Bearer header)
+  - Protected routes (giriş yapmışsa ana sayfaya yönlendirme)
+  - Routing: React Router v6
+
+## 3. Profil Güncelleme Sayfası
+- **API Endpoint:** `PUT /users/{userId}`
+- **Görev:** Kullanıcı profil bilgilerini görüntüleme ve düzenleme sayfası tasarımı ve implementasyonu. Kullanıcılar ad, soyad, email ve telefon gibi kişisel bilgilerini değiştirebilir. Güvenlik için giriş yapmış olmak gerekir ve kullanıcılar yalnızca kendi bilgilerini güncelleyebilir.
+- **UI Bileşenleri:**
+  - Responsive profil düzenleme formu
+  - Ad (firstName) input alanı (mevcut değerle dolu)
+  - Soyad (lastName) input alanı (mevcut değerle dolu)
+  - Email input alanı (mevcut değerle dolu, düzenlenebilir)
+  - Telefon numarası input alanı (mevcut değerle dolu)
+  - "Değişiklikleri Kaydet" butonu (primary button, form altında)
+  - Hesap bilgileri kartı (Kullanıcı ID, kayıt tarihi)
+  - Loading spinner (güncelleme işlemi sırasında)
+- **Form Validasyonu:**
+  - Email format kontrolü (real-time)
+  - Telefon numarası format kontrolü
+  - Real-time validation feedback
+  - Ad ve soyad boş olamaz kontrolü
+- **Kullanıcı Deneyimi:**
+  - Başarılı güncelleme sonrası success notification (toast)
+  - Hata durumunda error mesajı
+  - Form alanları mevcut kullanıcı bilgileriyle dolu gelir
+  - Protected route (giriş yapılmamışsa login'e yönlendirme)
+- **Teknik Detaylar:**
+  - AuthContext'ten mevcut kullanıcı bilgilerini okuma
+  - updateUser ile context güncelleme
+  - localStorage'da kullanıcı bilgilerini güncelleme
+  - State management (form state, loading state, error state)
+
+## 4. Hesap Silme Akışı
+- **API Endpoint:** `DELETE /users/{userId}`
+- **Görev:** Kullanıcının hesabını sistemden kalıcı olarak silmesini sağlayan web UI akışı tasarımı ve implementasyonu. Bu işlem geri alınamaz ve kullanıcının sistemdeki tüm verileri silinir.
+- **UI Bileşenleri:**
+  - "Hesabı Sil" butonu (profil sayfasında, danger button style)
+  - Çift tıklama onay mekanizması (ilk tıklama: "Emin misiniz?", ikinci tıklama: silme)
+  - Warning icons ve visual cues (kırmızı renk, tehlike ikonu)
+  - Uyarı mesajları ("Bu işlem geri alınamaz")
+- **Kullanıcı Deneyimi:**
+  - Destructive action için görsel uyarılar (kırmızı renk, warning icons)
+  - Açık ve net uyarı mesajları
+  - İptal seçeneği her zaman mevcut
+  - Silme işlemi sırasında loading indicator
+  - Başarılı silme sonrası logout ve ana sayfaya yönlendirme
+  - Success mesajı gösterilmesi (toast)
+- **Teknik Detaylar:**
+  - Çift onay mekanizması (two-step confirmation)
+  - Logout işlemi entegrasyonu (AuthContext.logout)
+  - localStorage ve sessionStorage temizleme
+  - Redirect handling (ana sayfaya dönüş)
+
+## 5. Üreticileri Listeleme Sayfası
+- **API Endpoint:** `GET /producers`
+- **Görev:** Sistemde kayıtlı olan üreticilerin listesini görüntülemeyi sağlayan web sayfası tasarımı ve implementasyonu. Kullanıcılar mevcut üreticiler hakkında genel bilgilere erişebilir.
+- **UI Bileşenleri:**
+  - Responsive üretici kartları grid layout (4 sütun desktop, 2 tablet, 1 mobile)
+  - Her üretici için kart bileşeni:
+    - Üretici avatar (ismin baş harfi, yeşil arka plan)
+    - Üretici adı (başlık)
+    - Konum bilgisi (adres)
+    - Email adresi
+    - Detay sayfasına yönlendirme oku
+  - Sayfalama (pagination) bileşeni
+  - Loading spinner (veri yüklenirken)
+  - Empty state (üretici yoksa placeholder mesaj)
+- **Kullanıcı Deneyimi:**
+  - Kartlara tıklayınca üretici detay sayfasına yönlendirme
+  - Hover efektleri (kart büyüme, gölge artışı)
+  - Smooth page transitions
+  - Sayfalama ile navigasyon
+- **Teknik Detaylar:**
+  - API'den veri çekme (getProducers)
+  - Fallback data (API erişilemezse örnek üretici verisi)
+  - Pagination state management
+  - React Router ile detay sayfasına navigasyon
+
+## 6. Üretici Detay Sayfası
+- **API Endpoint:** `GET /producers/{producerId}`
+- **Görev:** Belirli bir üreticinin detaylı bilgilerini ve ürünlerini görüntülemeyi sağlayan web sayfası tasarımı ve implementasyonu. Kullanıcılar üreticinin adı, iletişim bilgileri ve sunduğu ürünler gibi bilgilere erişebilir.
+- **UI Bileşenleri:**
+  - Üretici header kartı (avatar, isim, konum, email, telefon bilgileri)
+  - Üreticinin ürünleri bölümü (ürün kartları grid)
+  - İletişim bilgileri ikonları (FiMapPin, FiMail, FiPhone)
+  - Loading spinner (veri yüklenirken)
+  - Empty state (ürün yoksa placeholder mesaj)
+  - Geri dönüş navigasyonu
+- **Kullanıcı Deneyimi:**
+  - Üretici bilgileri üstte, ürünleri altta düzeni
+  - Ürün kartlarına tıklayınca ürün detay sayfasına yönlendirme
+  - Üretici bulunamadığında hata sayfası
+- **Teknik Detaylar:**
+  - URL parametresi ile üretici ID alma (useParams)
+  - Paralel API çağrıları (Promise.allSettled: üretici bilgisi + ürün listesi)
+  - Fallback data (API erişilemezse örnek veriler)
+  - Dinamik routing (/producers/:producerId)
+
+## 7. Şifre Sıfırlama Talebi Sayfası
+- **API Endpoint:** `POST /auth/reset-password-request`
+- **Görev:** Kullanıcıların şifrelerini unuttuklarında yeni bir şifre oluşturma talebi göndermelerini sağlayan web sayfası tasarımı ve implementasyonu. Kullanıcı email adresini girerek şifre sıfırlama bağlantısı talep eder.
+- **UI Bileşenleri:**
+  - Responsive form (email input alanı)
+  - Email input alanı (type="email", autocomplete="email")
+  - "Sıfırlama Bağlantısı Gönder" butonu (primary button)
+  - Başarılı gönderim sonrası durum ekranı (✉️ ikonu, bilgilendirme mesajı)
+  - "Giriş Sayfasına Dön" linki
+  - Loading spinner (gönderim sırasında)
+- **Kullanıcı Deneyimi:**
+  - Form gönderildikten sonra başarı ekranı gösterilmesi
+  - "E-posta kutunuzu kontrol edin" bilgilendirme mesajı
+  - Hata durumlarında kullanıcı dostu mesajlar
+  - Giriş sayfasına kolay dönüş
+- **Teknik Detaylar:**
+  - Two-state UI (form görünümü / başarı görünümü)
+  - Toast notification entegrasyonu
+  - Routing: React Router v6 (login sayfasına geri dönüş)
