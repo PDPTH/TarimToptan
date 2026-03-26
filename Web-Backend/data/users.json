@@ -1,0 +1,22 @@
+[
+  {
+    "id": "8bc43b5c-386a-403c-9fc3-7b402f43e023",
+    "email": "demo@tarimtoptan.com",
+    "password": "$2a$10$40wr5LzbI5rqKAyq9I0dre8Q7dbbp.E5f7MaOM6aUuZ8quHJja0..",
+    "firstName": "Demo",
+    "lastName": "Kullanıcı",
+    "role": "user",
+    "createdAt": "2024-01-01T10:00:00Z",
+    "updatedAt": "2024-01-01T10:00:00Z"
+  },
+  {
+    "id": "dbe30d0f-50a7-4291-869c-18a2b6c1b660",
+    "email": "admin@tarimtoptan.com",
+    "password": "$2a$10$40wr5LzbI5rqKAyq9I0dre8Q7dbbp.E5f7MaOM6aUuZ8quHJja0..",
+    "firstName": "Admin",
+    "lastName": "Yönetici",
+    "role": "admin",
+    "createdAt": "2024-01-01T10:00:00Z",
+    "updatedAt": "2024-01-01T10:00:00Z"
+  }
+]
