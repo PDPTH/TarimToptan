@@ -208,8 +208,8 @@ export default function CheckoutPage() {
 
                         {items.map((item) => (
                             <div key={item.id} className="cart-summary-row">
-                                <span>{item.productName} ×{item.quantity}</span>
-                                <span>₺{item.totalPrice?.toFixed(2)}</span>
+                                <span>{item.productName || item.name || 'Ürün'} ×{item.quantity}</span>
+                                <span>₺{(item.totalPrice || ((item.unitPrice || item.price || 0) * item.quantity)).toFixed(2)}</span>
                             </div>
                         ))}
 
@@ -220,7 +220,7 @@ export default function CheckoutPage() {
 
                         <div className="cart-summary-total">
                             <span>Toplam</span>
-                            <span style={{ color: 'var(--color-accent)' }}>₺{cart?.totalAmount?.toFixed(2) || '0.00'}</span>
+                            <span style={{ color: 'var(--color-accent)' }}>₺{(cart?.totalAmount || cart?.totalPrice || 0).toFixed(2)}</span>
                         </div>
 
                         <button
