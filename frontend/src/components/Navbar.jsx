@@ -36,6 +36,9 @@ export default function Navbar() {
                             <Link to="/cart" className={isActive('/cart')} onClick={() => setMenuOpen(false)}>
                                 <FiShoppingCart /> Sepet
                             </Link>
+                            <Link to="/orders" className={isActive('/orders')} onClick={() => setMenuOpen(false)}>
+                                <FiPackage /> Siparişlerim
+                            </Link>
                             <Link to="/profile" className={isActive('/profile')} onClick={() => setMenuOpen(false)}>
                                 <FiUser /> {user?.firstName || 'Profil'}
                             </Link>
