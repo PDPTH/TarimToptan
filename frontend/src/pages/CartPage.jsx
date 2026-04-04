@@ -64,11 +64,11 @@ export default function CartPage() {
                             <div key={item.id} className="cart-item">
                                 <div className="cart-item-image">🌿</div>
                                 <div className="cart-item-info">
-                                    <h4>{item.productName || 'Ürün'}</h4>
-                                    <p>Miktar: {item.quantity} × ₺{item.unitPrice?.toFixed(2)}</p>
+                                    <h4>{item.productName || item.name || 'Ürün'}</h4>
+                                    <p>Miktar: {item.quantity} × ₺{(item.unitPrice || item.price || 0).toFixed(2)}</p>
                                 </div>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                                    <span className="cart-item-price">₺{item.totalPrice?.toFixed(2)}</span>
+                                    <span className="cart-item-price">₺{(item.totalPrice || ((item.unitPrice || item.price || 0) * item.quantity)).toFixed(2)}</span>
                                     <button
                                         className="btn btn-danger btn-sm"
                                         onClick={() => handleRemove(item.id)}
@@ -87,7 +87,7 @@ export default function CartPage() {
 
                         <div className="cart-summary-row">
                             <span>Ürün Toplamı</span>
-                            <span>₺{cart?.totalAmount?.toFixed(2) || '0.00'}</span>
+                            <span>₺{(cart?.totalAmount || cart?.totalPrice || 0).toFixed(2)}</span>
                         </div>
                         <div className="cart-summary-row">
                             <span>Kargo</span>
@@ -96,7 +96,7 @@ export default function CartPage() {
 
                         <div className="cart-summary-total">
                             <span>Toplam</span>
-                            <span style={{ color: 'var(--color-accent)' }}>₺{cart?.totalAmount?.toFixed(2) || '0.00'}</span>
+                            <span style={{ color: 'var(--color-accent)' }}>₺{(cart?.totalAmount || cart?.totalPrice || 0).toFixed(2)}</span>
                         </div>
 
                         <button
