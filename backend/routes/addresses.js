@@ -7,9 +7,10 @@ const router = express.Router()
 
 // POST /addresses
 router.post('/', authMiddleware, (req, res) => {
-    const { title, fullName, phone, city, district, street, postalCode } = req.body
+    const { title, fullName, phone, city, district, street, addressLine, postalCode } = req.body
+    const resolvedAddressLine = addressLine || street
 
-    if (!city || !street) {
+    if (!city || !resolvedAddressLine) {
         return res.status(400).json({ code: 'BAD_REQUEST', message: 'İl ve adres satırı zorunludur' })
     }
 
@@ -21,7 +22,7 @@ router.post('/', authMiddleware, (req, res) => {
         phone: phone || '',
         city,
         district: district || '',
-        street,
+        addressLine: resolvedAddressLine,
         postalCode: postalCode || '',
         country: 'Türkiye',
         createdAt: new Date().toISOString(),
@@ -40,14 +41,14 @@ router.put('/:addressId', authMiddleware, (req, res) => {
         return res.status(403).json({ code: 'FORBIDDEN', message: 'Sadece kendi adresinizi güncelleyebilirsiniz' })
     }
 
-    const { title, fullName, phone, city, district, street, postalCode } = req.body
+    const { title, fullName, phone, city, district, street, addressLine, postalCode } = req.body
     const updates = {}
     if (title !== undefined) updates.title = title
     if (fullName !== undefined) updates.fullName = fullName
     if (phone !== undefined) updates.phone = phone
     if (city !== undefined) updates.city = city
     if (district !== undefined) updates.district = district
-    if (street !== undefined) updates.street = street
+    if (addressLine !== undefined || street !== undefined) updates.addressLine = addressLine || street
     if (postalCode !== undefined) updates.postalCode = postalCode
 
     const updated = update('addresses', req.params.addressId, updates)
