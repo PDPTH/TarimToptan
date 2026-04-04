@@ -1,6 +1,6 @@
 # Web Frontend Görev Dağılımı
 
-**Web Frontend Adresi:** [frontend.yazmuh.com](https://PDPTH.github.io/TarimToptan/)
+**Web Frontend Adresi:** [frontend.tarimtoptan.com](https://PDPTH.github.io/TarimToptan/)
 
 Bu dokümanda, web uygulamasının kullanıcı arayüzü (UI) ve kullanıcı deneyimi (UX) görevleri listelenmektedir. Her grup üyesi, kendisine atanan sayfaların tasarımı, implementasyonu ve kullanıcı etkileşimlerinden sorumludur.
 
