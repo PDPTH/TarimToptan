@@ -18,8 +18,8 @@ E-Ticaret (Tarım Ürünleri Satışı)
 
 ## Proje Linkleri
 
-- **REST API Adresi:** [api.yazmuh.com](https://api.yazmuh.com)
-- **Web Frontend Adresi:** [frontend.yazmuh.com](https://PDPTH.github.io/TarimToptan/)
+- **REST API Adresi:** [api.tarimtoptan.com](https://tarimtoptan.onrender.com)
+- **Web Frontend Adresi:** [frontend.tarimtoptan.com](https://PDPTH.github.io/TarimToptan/)
 
 ---
 
