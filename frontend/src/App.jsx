@@ -17,6 +17,7 @@ import ProducerDetailPage from './pages/ProducerDetailPage.jsx'
 import CartPage from './pages/CartPage.jsx'
 import CheckoutPage from './pages/CheckoutPage.jsx'
 import AddressPage from './pages/AddressPage.jsx'
+import OrdersPage from './pages/OrdersPage.jsx'
 
 function App() {
     return (
@@ -40,6 +41,7 @@ function App() {
                     <Route path="/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
                     <Route path="/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
                     <Route path="/addresses" element={<ProtectedRoute><AddressPage /></ProtectedRoute>} />
+                    <Route path="/orders" element={<ProtectedRoute><OrdersPage /></ProtectedRoute>} />
                 </Routes>
             </main>
             <Footer />
