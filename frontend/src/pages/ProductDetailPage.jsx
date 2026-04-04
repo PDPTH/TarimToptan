@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { getProductById, createReview } from '../modules/umut/productService'
+import { getProductById, createReview, getReviews } from '../modules/umut/productService'
 import { addToCart } from '../modules/aykhan/cartService'
 import { sampleProducts } from '../utils/sampleData'
 import { useAuth } from '../context/AuthContext.jsx'
@@ -23,6 +23,8 @@ export default function ProductDetailPage() {
     // Review form
     const [reviewForm, setReviewForm] = useState({ rating: 5, comment: '' })
     const [submittingReview, setSubmittingReview] = useState(false)
+    const [reviews, setReviews] = useState([])
+    const [reviewsLoading, setReviewsLoading] = useState(false)
 
     useEffect(() => {
         async function fetchProduct() {
@@ -40,6 +42,22 @@ export default function ProductDetailPage() {
         }
         fetchProduct()
     }, [productId])
+
+    useEffect(() => {
+        fetchReviews()
+    }, [productId])
+
+    async function fetchReviews() {
+        setReviewsLoading(true)
+        try {
+            const data = await getReviews(productId)
+            setReviews(data.data || data || [])
+        } catch (err) {
+            console.log('Değerlendirmeler yüklenemedi:', err)
+        } finally {
+            setReviewsLoading(false)
+        }
+    }
 
     const handleAddToCart = async () => {
         if (!isAuthenticated) {
@@ -68,6 +86,7 @@ export default function ProductDetailPage() {
             await createReview(productId, reviewForm)
             toast.success('Değerlendirmeniz eklendi!')
             setReviewForm({ rating: 5, comment: '' })
+            fetchReviews() // Listeyi yenile
         } catch (err) {
             toast.error(err.response?.data?.message || 'Değerlendirme eklenemedi.')
         } finally {
@@ -181,6 +200,42 @@ export default function ProductDetailPage() {
                     </div>
                 </section>
             )}
+
+            {/* Existing Reviews */}
+            <section className="section">
+                <h2 className="section-title" style={{ marginBottom: '16px' }}>
+                    <FiStar /> Değerlendirmeler {reviews.length > 0 && `(${reviews.length})`}
+                </h2>
+                {reviewsLoading ? (
+                    <LoadingSpinner text="Değerlendirmeler yükleniyor..." />
+                ) : reviews.length === 0 ? (
+                    <div className="card" style={{ textAlign: 'center', padding: '32px' }}>
+                        <p style={{ color: 'var(--color-text-secondary)' }}>Bu ürün için henüz değerlendirme yapılmamış.</p>
+                    </div>
+                ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        {reviews.map((review) => (
+                            <div key={review.id} className="card" style={{ padding: '16px' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                                    <strong style={{ fontSize: '0.95rem' }}>{review.userName || 'Anonim'}</strong>
+                                    <span style={{ fontSize: '0.8rem', color: 'var(--color-text-secondary)' }}>
+                                        {review.createdAt ? new Date(review.createdAt).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}
+                                    </span>
+                                </div>
+                                <div style={{ marginBottom: '8px' }}>
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <span key={star} style={{
+                                            color: star <= (review.rating || 0) ? 'var(--color-accent)' : 'var(--color-text-muted)',
+                                            fontSize: '1.1rem',
+                                        }}>★</span>
+                                    ))}
+                                </div>
+                                <p style={{ color: 'var(--color-text-secondary)', margin: 0, lineHeight: '1.5' }}>{review.comment}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </section>
         </div>
     )
 }
