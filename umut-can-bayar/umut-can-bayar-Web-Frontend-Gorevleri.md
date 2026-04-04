@@ -1,0 +1,174 @@
+# Umut Can Bayar'ın Web Frontend Görevleri
+**Front-end Test Videosu:** [Link buraya eklenecek](https://example.com)
+
+## 1. Ürün Ekleme Sayfası
+- **API Endpoint:** `POST /products`
+- **Görev:** Yetkili kullanıcıların sisteme yeni bir ürün eklemesini sağlayan web sayfası tasarımı ve implementasyonu. Ürün adı, açıklama, fiyat ve stok bilgileri girilerek ürün sisteme kaydedilir.
+- **UI Bileşenleri:**
+  - Responsive ürün ekleme formu (desktop ve mobile uyumlu)
+  - Ürün adı input alanı (text, zorunlu alan)
+  - Açıklama textarea alanı (çok satırlı açıklama)
+  - Fiyat input alanı (type="number", step="0.01", ₺ simgesi)
+  - Stok miktarı input alanı (type="number", tam sayı)
+  - Kategori seçimi (select dropdown: Bakliyat, Tahıl, Sebze, Meyve, Süt Ürünleri, Diğer)
+  - Üretici ID input alanı (text, UUID format)
+  - "Ürün Ekle" butonu (primary button style)
+  - Loading spinner (ekleme işlemi sırasında)
+  - Form container (card layout)
+- **Form Validasyonu:**
+  - Ürün adı boş olamaz kontrolü (zorunlu)
+  - Fiyat boş olamaz ve pozitif sayı kontrolü (zorunlu)
+  - Stok miktarı pozitif tam sayı kontrolü
+  - Açıklama karakter sınırı kontrolü
+  - Tüm zorunlu alanlar geçerli olmadan buton disabled
+- **Kullanıcı Deneyimi:**
+  - Başarılı ekleme sonrası success notification (toast) ve ürün listesine yönlendirme
+  - Hata durumlarında kullanıcı dostu mesajlar
+  - Form submission prevention (double-click koruması)
+  - Inline validation feedback
+- **Teknik Detaylar:**
+  - Framework: React + Vite
+  - Protected route (giriş yapmış kullanıcılar için)
+  - State management (form state, loading state, error state)
+  - Routing: React Router v6 (kaydetme sonrası /products sayfasına yönlendirme)
+  - Toast notification entegrasyonu
+
+## 2. Ürün Bilgilerini Güncelleme Sayfası
+- **API Endpoint:** `PUT /products/{productId}`
+- **Görev:** Mevcut bir ürünün bilgilerinin güncellenmesini sağlayan web sayfası tasarımı ve implementasyonu. Ürün adı, açıklama, fiyat ve diğer özellikler değiştirilebilir.
+- **UI Bileşenleri:**
+  - Responsive ürün düzenleme formu (ekleme formu ile aynı yapı)
+  - Mevcut ürün bilgileriyle dolu input alanları
+  - Ürün adı, açıklama, fiyat, stok, kategori, üretici ID input alanları
+  - "Güncelle" butonu (primary button style)
+  - "Ürünü Sil" butonu (danger button style)
+  - "Stok Güncelle" butonu (secondary button style)
+  - Loading spinner (güncelleme işlemi sırasında)
+- **Form Validasyonu:**
+  - Ürün adı boş olamaz kontrolü
+  - Fiyat pozitif sayı kontrolü
+  - Stok miktarı pozitif tam sayı kontrolü
+  - Real-time validation feedback
+- **Kullanıcı Deneyimi:**
+  - Sayfa yüklendiğinde mevcut ürün bilgileri formda görüntülenir
+  - Başarılı güncelleme sonrası success notification
+  - Hata durumunda error mesajı
+  - URL parametresi ile ürün ID alma (/products/:productId/edit)
+- **Teknik Detaylar:**
+  - useParams ile URL'den productId alma
+  - useEffect ile mevcut ürün verilerini API'den çekme
+  - Form pre-population (mevcut değerlerle dolu)
+  - Routing: güncelleme sonrası /products sayfasına yönlendirme
+
+## 3. Ürün Yayından Kaldırma (Silme) Akışı
+- **API Endpoint:** `DELETE /products/{productId}`
+- **Görev:** Bir ürünün sistemden kaldırılmasını veya satıştan çekilmesini sağlayan web UI akışı tasarımı ve implementasyonu. Ürün artık kullanıcılar tarafından görüntülenemez veya satın alınamaz.
+- **UI Bileşenleri:**
+  - "Ürünü Sil" butonu (ürün güncelleme sayfasında, danger button style)
+  - Browser confirmation dialog (window.confirm)
+  - Warning mesajı ("Bu ürünü silmek istediğinize emin misiniz?")
+  - Loading indicator (silme işlemi sırasında)
+- **Kullanıcı Deneyimi:**
+  - Destructive action için görsel uyarılar (kırmızı renk, çöp kutusu ikonu)
+  - Onay sorusu gösterilmesi
+  - İptal seçeneği her zaman mevcut
+  - Başarılı silme sonrası success notification ve ürün listesine yönlendirme
+- **Teknik Detaylar:**
+  - window.confirm ile onay mekanizması
+  - Silme sonrası /products sayfasına navigate
+  - Error handling (silme başarısız olursa toast error)
+
+## 4. Ürünleri Listeleme Sayfası
+- **API Endpoint:** `GET /products`
+- **Görev:** Sistemde bulunan tüm ürünlerin listesini görüntülemeyi sağlayan web sayfası tasarımı ve implementasyonu. Kullanıcılar mevcut ürünleri inceleyebilir, filtreleyebilir ve detaylarına ulaşabilir.
+- **UI Bileşenleri:**
+  - Responsive ürün kartları grid layout (4 sütun desktop, 2 tablet, 1 mobile)
+  - Her ürün için kart bileşeni (ProductCard):
+    - Kategori emojisi (🫘 Bakliyat, 🌾 Tahıl, 🥬 Sebze, 🍎 Meyve)
+    - Kategori badge'i
+    - Ürün adı (başlık)
+    - Fiyat bilgisi (₺ formatında)
+    - Stok durumu badge'i (yeşil: stokta, kırmızı: tükendi)
+  - Filtre bölümü:
+    - Minimum fiyat input alanı
+    - Maksimum fiyat input alanı
+    - "Filtrele" butonu
+  - Sayfalama (pagination) bileşeni
+  - Loading spinner (veri yüklenirken)
+  - Empty state (ürün yoksa placeholder mesaj ve ikon)
+- **Kullanıcı Deneyimi:**
+  - Kartlara tıklayınca ürün detay sayfasına yönlendirme
+  - Hover efektleri (kart büyüme, gölge artışı)
+  - URL search params ile filtre state yönetimi
+  - Sayfalama ile navigasyon
+  - Responsive tasarım (mobile-first)
+- **Teknik Detaylar:**
+  - useSearchParams ile URL query parametreleri yönetimi
+  - API'den veri çekme (getProducts)
+  - Fallback data (API erişilemezse 16 örnek tarım ürünü)
+  - Pagination state management
+  - React Router ile detay sayfasına navigasyon
+
+## 5. Ürün Detayını Görüntüleme Sayfası
+- **API Endpoint:** `GET /products/{productId}`
+- **Görev:** Seçilen bir ürünün detaylı bilgilerini görüntülemeyi sağlayan web sayfası tasarımı ve implementasyonu. Ürün açıklaması, fiyatı, stok durumu ve diğer özellikler kullanıcıya gösterilir.
+- **UI Bileşenleri:**
+  - Detail layout (sol: ürün görseli, sağ: bilgiler)
+  - Kategori badge'i
+  - Ürün adı (H1 heading)
+  - Fiyat bilgisi (büyük font, ₺ formatı)
+  - Ürün açıklaması (paragraf)
+  - Stok durumu badge'i
+  - Miktar seçici (−/+ butonları, sayı gösterimi)
+  - "Sepete Ekle" butonu (accent button, POST /cart/items ile entegre)
+  - Loading spinner (veri yüklenirken)
+  - Ürün bulunamadı state (hata durumu)
+- **Kullanıcı Deneyimi:**
+  - Miktar artırma/azaltma (stok sınırına kadar)
+  - Sepete ekleme sonrası success notification
+  - Giriş yapmamış kullanıcılar için uyarı mesajı
+  - Responsive layout (mobilde üst-alt düzen)
+- **Teknik Detaylar:**
+  - useParams ile URL'den productId alma
+  - useEffect ile ürün verisi çekme
+  - Fallback data (API erişilemezse örnek veriden eşleştirme)
+  - Cart service entegrasyonu (addToCart)
+
+## 6. Ürün Stok Miktarını Güncelleme
+- **API Endpoint:** `PUT /products/{productId}/stock`
+- **Görev:** Bir ürünün stok miktarını güncellemeyi sağlayan web UI bileşeni tasarımı ve implementasyonu. Bu işlem genellikle üreticiler veya yöneticiler tarafından yapılır.
+- **UI Bileşenleri:**
+  - Stok miktarı input alanı (type="number", ürün güncelleme sayfasında)
+  - "Stok Güncelle" butonu (secondary button, 📦 ikonu)
+  - Mevcut stok değeriyle dolu input
+- **Kullanıcı Deneyimi:**
+  - Başarılı güncelleme sonrası success notification (toast)
+  - Hata durumunda error mesajı
+  - Anlık geri bildirim
+- **Teknik Detaylar:**
+  - updateStock API fonksiyonu (PATCH /products/{productId}/stock)
+  - Ürün güncelleme sayfası içinde entegre
+  - Error handling
+
+## 7. Ürün Değerlendirmesi Yapma
+- **API Endpoint:** `POST /products/{productId}/reviews`
+- **Görev:** Kullanıcıların satın aldıkları ürünler hakkında değerlendirme yapmasını sağlayan web bileşeni tasarımı ve implementasyonu. Kullanıcılar puan verebilir ve yorum yazarak diğer kullanıcılara geri bildirim sağlayabilir.
+- **UI Bileşenleri:**
+  - Değerlendirme formu (ürün detay sayfasının alt kısmında)
+  - Yıldız puanlama bileşeni (1-5 arası, tıklanabilir ★ ikonları)
+  - Yorum textarea alanı (placeholder: "Bu ürün hakkında düşüncelerinizi yazın...")
+  - "Değerlendirmeyi Gönder" butonu (primary button, FiSend ikonu)
+  - Loading spinner (gönderim sırasında)
+- **Form Validasyonu:**
+  - Yorum boş olamaz kontrolü
+  - Puan seçimi kontrolü (varsayılan: 5)
+- **Kullanıcı Deneyimi:**
+  - Yıldızlara tıklayarak puan seçme (seçili yıldızlar turuncu, seçilmeyenler gri)
+  - Sadece giriş yapmış kullanıcılar değerlendirme yapabilir
+  - Başarılı gönderim sonrası success notification ve form sıfırlanması
+  - Hata durumunda error mesajı
+- **Teknik Detaylar:**
+  - Protected component (isAuthenticated kontrolü)
+  - createReview API fonksiyonu
+  - Ürün detay sayfası içinde entegre
+  - State management (rating, comment, submitting state)
