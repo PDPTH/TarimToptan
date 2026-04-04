@@ -5,6 +5,14 @@ const { authMiddleware } = require('../utils/auth')
 
 const router = express.Router()
 
+// GET /orders (kullanıcının siparişlerini listele)
+router.get('/', authMiddleware, (req, res) => {
+    const orders = findAll('orders').filter(o => o.userId === req.user.id)
+    // En yeniden eskiye sırala
+    orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    res.json({ data: orders })
+})
+
 // POST /orders
 router.post('/', authMiddleware, (req, res) => {
     const { items, shippingAddress, addressId } = req.body
