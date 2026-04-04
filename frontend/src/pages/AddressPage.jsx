@@ -1,13 +1,15 @@
-import { useState } from 'react'
-import { createAddress, updateAddress } from '../modules/aykhan/cartService'
+import { useState, useEffect } from 'react'
+import { createAddress, updateAddress, getAddresses } from '../modules/aykhan/cartService'
 import toast from 'react-hot-toast'
 import { FiMapPin, FiPlus, FiSave, FiEdit } from 'react-icons/fi'
+import LoadingSpinner from '../components/LoadingSpinner.jsx'
 
 export default function AddressPage() {
     const [addresses, setAddresses] = useState([])
     const [showForm, setShowForm] = useState(false)
     const [editId, setEditId] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [initialLoading, setInitialLoading] = useState(true)
     const [form, setForm] = useState({
         title: 'Ev',
         fullName: '',
@@ -17,6 +19,20 @@ export default function AddressPage() {
         addressLine: '',
         postalCode: '',
     })
+
+    useEffect(() => {
+        async function fetchAddresses() {
+            try {
+                const data = await getAddresses()
+                setAddresses(data.data || data || [])
+            } catch (err) {
+                console.error('Adresler yüklenemedi:', err)
+            } finally {
+                setInitialLoading(false)
+            }
+        }
+        fetchAddresses()
+    }, [])
 
     const resetForm = () => {
         setForm({ title: 'Ev', fullName: '', phone: '', city: '', district: '', addressLine: '', postalCode: '' })
@@ -75,6 +91,8 @@ export default function AddressPage() {
                     <FiPlus /> Yeni Adres
                 </button>
             </div>
+
+            {initialLoading && <LoadingSpinner text="Adresler yükleniyor..." />}
 
             {/* Address Form */}
             {showForm && (
