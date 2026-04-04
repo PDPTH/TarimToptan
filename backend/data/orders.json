@@ -1,0 +1,40 @@
+[
+  {
+    "id": "98c1d476-63ce-4bcd-a814-170794eaec8f",
+    "userId": "20c18bec-0c9e-485a-bf37-e45eff092751",
+    "items": [
+      {
+        "productId": "42ee2e25-b7d9-4516-9eb1-483f3f93ae14",
+        "productName": "Osmancık Pirinç",
+        "quantity": 3,
+        "unitPrice": 189,
+        "totalPrice": 567
+      }
+    ],
+    "totalAmount": 567,
+    "status": "pending",
+    "shippingAddress": null,
+    "addressId": "19a6d8b4-774c-4c97-8a9e-9be6f84858d7",
+    "createdAt": "2026-04-04T19:11:51.143Z",
+    "updatedAt": "2026-04-04T19:11:51.143Z"
+  },
+  {
+    "id": "2409e084-7ed0-4003-a077-167669999198",
+    "userId": "20c18bec-0c9e-485a-bf37-e45eff092751",
+    "items": [
+      {
+        "productId": "b5d02e39-47e9-4ce6-8559-056787029edc",
+        "productName": "Sarı Nohut",
+        "quantity": 1,
+        "unitPrice": 72.5,
+        "totalPrice": 72.5
+      }
+    ],
+    "totalAmount": 72.5,
+    "status": "cancelled",
+    "shippingAddress": null,
+    "addressId": "bef02e92-0997-419e-9e80-3e2a9929ee36",
+    "createdAt": "2026-04-04T19:15:29.178Z",
+    "updatedAt": "2026-04-04T19:15:31.066Z"
+  }
+]
