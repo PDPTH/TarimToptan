@@ -1,5 +1,5 @@
 # Aykhan Bayramov'un Web Frontend Görevleri
-**Front-end Test Videosu:** [Link buraya eklenecek](https://1drv.ms/v/c/b587c82f474385b7/IQAc2n-qZyd9R7D_1ZxXpmFqAW_rzZUCBT0qBu1TkRQVUag?e=fmlbfC)
+**Front-end Test Videosu:** [VIDEO=>](https://1drv.ms/v/c/b587c82f474385b7/IQAc2n-qZyd9R7D_1ZxXpmFqAW_rzZUCBT0qBu1TkRQVUag?e=fmlbfC)
 
 ## 1. Sepete Ürün Ekleme
 - **API Endpoint:** `POST /cart/items`
