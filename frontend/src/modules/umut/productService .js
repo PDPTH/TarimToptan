@@ -59,3 +59,8 @@ export async function createReview(productId, reviewData) {
     const res = await api.post(`/products/${productId}/reviews`, reviewData)
     return res.data
 }
+
+export async function getReviews(productId) {
+    const res = await api.get(`/products/${productId}/reviews`)
+    return res.data
+}
