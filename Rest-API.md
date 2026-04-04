@@ -1,6 +1,6 @@
 # REST API Görev Dağılımı
 
-**REST API Adresi:** [api.yazmuh.com](https://tarimtoptan-api.onrender.com/v1)
+**REST API Adresi:** [api.tarimtoptan.com](https://tarimtoptan-api.onrender.com/v1)
 
 Bu dokümanda, proje ekibindeki her üyenin geliştirmekten sorumlu olduğu REST API metotları listelenmektedir.
 
