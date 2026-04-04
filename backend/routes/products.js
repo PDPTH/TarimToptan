@@ -84,6 +84,28 @@ router.patch('/:productId/stock', authMiddleware, (req, res) => {
     res.json(updated)
 })
 
+// GET /products/:productId/reviews
+router.get('/:productId/reviews', (req, res) => {
+    const product = findById('products', req.params.productId)
+    if (!product) return res.status(404).json({ code: 'NOT_FOUND', message: 'Ürün bulunamadı' })
+
+    const allReviews = findAll('reviews')
+    const productReviews = allReviews.filter(r => r.productId === req.params.productId)
+    productReviews.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+    // Kullanıcı isimlerini ekle
+    const users = findAll('users')
+    const enriched = productReviews.map(review => {
+        const user = users.find(u => u.id === review.userId)
+        return {
+            ...review,
+            userName: user ? `${user.firstName} ${user.lastName}` : 'Anonim',
+        }
+    })
+
+    res.json({ data: enriched })
+})
+
 // POST /products/:productId/reviews
 router.post('/:productId/reviews', authMiddleware, (req, res) => {
     const product = findById('products', req.params.productId)
