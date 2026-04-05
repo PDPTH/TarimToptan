@@ -1,5 +1,5 @@
 # Süleyman Buğra Çetin'in Web Frontend Görevleri
-**Front-end Test Videosu:** [Link buraya eklenecek](https://1drv.ms/v/c/7a6d98bcee8c9aad/IQBS7N5V8BaHTKtin04WzIXRASDM7Xaatq8HuShCd-ur0OE?e=DYWJ1v)
+**Front-end Test Videosu:** [Gereksinim_Tanitim](https://1drv.ms/v/c/7a6d98bcee8c9aad/IQBS7N5V8BaHTKtin04WzIXRASDM7Xaatq8HuShCd-ur0OE?e=DYWJ1v)
 
 ## 1. Üye Olma (Kayıt) Sayfası
 - **API Endpoint:** `POST /auth/register`
