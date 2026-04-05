@@ -71,7 +71,7 @@
   "phone": "+905551234567",
   "city": "İstanbul",
   "district": "Beşiktaş",
-  "addressLine": "Barbaros Bulvarı No:45",
+  "addressLine": "Barbaros Bulvarı No:55",
   "postalCode": "34353"
 }
 ```
