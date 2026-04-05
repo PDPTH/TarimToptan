@@ -1,5 +1,5 @@
 # Umut Can Bayar'ın Web Frontend Görevleri
-**Front-end Test Videosu:** [Link buraya eklenecek](https://example.com)
+**Front-end Test Videosu:** https://1drv.ms/v/c/b305008a94f4057d/IQBbem1G7fTsTpHq8MkU3wIkAVB-ZmIRiRddr4kSKtFjfZ4?e=4dC789
 
 ## 1. Ürün Ekleme Sayfası
 - **API Endpoint:** `POST /products`
