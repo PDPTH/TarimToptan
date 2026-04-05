@@ -1,4 +1,6 @@
 ## 1. Sepete Ürün Ekleme
+**API Test Videosu:** [LINK](https://1drv.ms/v/c/b587c82f474385b7/IQAZmNfhvw6pSpL0OKWXDhiAAbPgZUe1XNSwz-J4IYJLZII?e=H1sZiU)
+// tum gereksinimler yapildi //
 - **Endpoint:** `POST /cart/items`
 - **Request Body:** 
 ```json
