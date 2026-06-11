@@ -4,9 +4,11 @@ Bu bölüm TarımToptan mobil uygulamasının REST API bağlantı görevlerini i
 
 ## REST API Adresi
 
-- Android emülatör: `http://10.0.2.2:3000/v1`
-- Bilgisayar tarayıcısı: `http://localhost:3000/v1`
-- Gerçek cihaz: bilgisayarın yerel IP adresi kullanılmalıdır.
+- Canlı Render API: `https://tarimtoptan-api.onrender.com/v1`
+- Yerel Android emülatör testi: `http://10.0.2.2:3000/v1`
+- Yerel bilgisayar tarayıcısı testi: `http://localhost:3000/v1`
+
+Mobil uygulama varsayılan olarak canlı Render API adresine bağlanacak şekilde ayarlanmıştır. Yerel backend ile test yapılacaksa `android-java/app/src/main/java/com/tarimtoptan/android/net/ApiClient.java` dosyasındaki `API_BASE_URL` değeri geçici olarak yerel adrese çevrilebilir.
 
 ## Grup Üyelerinin Mobil Back-End Görevleri
 

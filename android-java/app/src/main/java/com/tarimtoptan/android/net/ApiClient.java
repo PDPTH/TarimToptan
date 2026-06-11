@@ -21,9 +21,8 @@ public class ApiClient {
         void onError(String message);
     }
 
-    // Emülatör için: "http://10.0.2.2:3000/v1"
-    // Gerçek telefon için: bilgisayarın WiFi IP adresi
-    public static final String API_BASE_URL = "http://10.0.2.2:3000/v1";
+    // Canli Render API adresi. Yerel backend ile test icin "http://10.0.2.2:3000/v1" kullanilabilir.
+    public static final String API_BASE_URL = "https://tarimtoptan-api.onrender.com/v1";
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());

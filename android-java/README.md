@@ -13,19 +13,36 @@ TarimToptan mobil uygulamasi, web sitesindeki koyu yesil alisveris tasarimina be
 
 ## Calistirma
 
-1. Backend klasorunde uygulama sunucusunu baslat:
+Uygulama varsayilan olarak Render uzerindeki canli API'ye baglanir:
+
+```txt
+https://tarimtoptan-api.onrender.com/v1
+```
+
+Bu adres `android-java/app/src/main/java/com/tarimtoptan/android/net/ApiClient.java` dosyasindaki `API_BASE_URL` sabitinde tanimlidir.
+
+1. Android Studio'da bu klasoru ac:
+
+```txt
+android-java
+```
+
+2. Emulatorden veya gercek Android cihazdan uygulamayi calistir.
+
+## Yerel Backend ile Test
+
+Canli Render servisi yerine bilgisayardaki backend'i kullanmak istersen once backend klasorunde bagimliliklari kurup sunucuyu baslat:
 
 ```powershell
-cd C:\Users\umtcn\OneDrive\Belgeler\web\TarimToptan\Web-Backend
+cd Web-Backend
+npm.cmd install
 npm.cmd start
 ```
 
-2. Android Studio'da bu klasoru ac:
+Ardindan `ApiClient.java` icindeki `API_BASE_URL` degerini Android emulator icin su adrese cevir:
 
-```txt
-C:\Users\umtcn\OneDrive\Belgeler\web\TarimToptan\android-java
+```java
+public static final String API_BASE_URL = "http://10.0.2.2:3000/v1";
 ```
 
-3. Emulatorden uygulamayi calistir.
-
-Emulatorde uygulama, bilgisayardaki yerel sunucuya otomatik baglanacak sekilde ayarlanmistir.
+Gercek telefonda yerel backend'e baglanmak icin `10.0.2.2` yerine bilgisayarin WiFi IP adresi kullanilmalidir.

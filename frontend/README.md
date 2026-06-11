@@ -7,8 +7,8 @@ Tarım ürünleri e-ticaret platformu frontend uygulaması.
 | Kaynak | URL |
 |--------|-----|
 | **Frontend** | [frontend.yazmuh.com](https://frontend.yazmuh.com) |
-| **REST API** | Yerel TarimToptan backend |
-| **API Base URL** | `http://localhost:3000/v1` |
+| **REST API** | [tarimtoptan-api.onrender.com](https://tarimtoptan-api.onrender.com) |
+| **API Base URL** | `https://tarimtoptan-api.onrender.com/v1` |
 
 ## 🛠 Teknolojiler
 
@@ -118,7 +118,7 @@ src/
 4. Framework: Vite
 5. Environment Variables:
    ```
-   VITE_API_URL=http://localhost:3000/v1
+   VITE_API_URL=https://tarimtoptan-api.onrender.com/v1
    ```
 6. Deploy et
 

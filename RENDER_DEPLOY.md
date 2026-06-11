@@ -18,29 +18,27 @@ Repo kokunde bulunan `render.yaml` dosyasi da ayni ayarlari Blueprint olarak tan
 
 ## Kontrol
 
-Deploy bittikten sonra Render'in verdigi URL su sekilde test edilir:
+Deploy bittikten sonra canli API su adresten test edilir:
 
 ```text
-https://RENDER-SERVIS-ADI.onrender.com/v1
+https://tarimtoptan-api.onrender.com/v1
 ```
 
 Basarili olursa API endpoint listesini JSON olarak doner.
 
 ## Mobil Uygulama API Adresi
 
-Render URL kesinlestikten sonra Android tarafinda su dosyadaki adres guncellenmelidir:
+Android tarafinda canli API adresi su dosyada tanimlidir:
 
 ```text
 android-java/app/src/main/java/com/tarimtoptan/android/net/ApiClient.java
 ```
 
-Ornek:
+Kullanilan adres:
 
 ```java
 public static final String API_BASE_URL = "https://tarimtoptan-api.onrender.com/v1";
 ```
-
-Render servis adi farkli olursa URL'yi Render Dashboard'daki gercek adrese gore yaz.
 
 ## Not
 
