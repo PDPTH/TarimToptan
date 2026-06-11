@@ -1,0 +1,10 @@
+node_modules/
+frontend/node_modules/
+Web-Backend/node_modules/
+frontend/dist/
+frontend/.env.local
+android-java/.gradle/
+android-java/app/build/
+android-java/build/
+*.log
+.DS_Store

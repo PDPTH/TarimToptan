@@ -71,8 +71,7 @@ router.post('/', authMiddleware, (req, res) => {
     res.status(201).json(order)
 })
 
-// PATCH /orders/:orderId/cancel
-router.patch('/:orderId/cancel', authMiddleware, (req, res) => {
+function cancelOrder(req, res) {
     const order = findById('orders', req.params.orderId)
     if (!order) return res.status(404).json({ code: 'NOT_FOUND', message: 'Sipariş bulunamadı' })
     if (order.userId !== req.user.id) {
@@ -84,6 +83,12 @@ router.patch('/:orderId/cancel', authMiddleware, (req, res) => {
 
     const updated = update('orders', req.params.orderId, { status: 'cancelled' })
     res.json(updated)
-})
+}
+
+// PATCH /orders/:orderId/cancel
+router.patch('/:orderId/cancel', authMiddleware, cancelOrder)
+
+// DELETE /orders/:orderId
+router.delete('/:orderId', authMiddleware, cancelOrder)
 
 module.exports = router

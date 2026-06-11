@@ -73,7 +73,7 @@ router.delete('/items/:itemId', authMiddleware, (req, res) => {
     }
 
     saveCart(cart)
-    res.json(cart)
+    res.status(204).send()
 })
 
 module.exports = router
