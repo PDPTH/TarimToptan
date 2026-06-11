@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- TarımToptan Brand Colors -->
+    <color name="bg">#0D1F0D</color>
+    <color name="surface">#09210E</color>
+    <color name="panel">#162E16</color>
+    <color name="panel_soft">#1E3E1E</color>
+    <color name="line">#36703A</color>
+    <color name="text">#E8F5E9</color>
+    <color name="muted">#A5D6A7</color>
+    <color name="accent">#4CAF50</color>
+    <color name="accent_dark">#2E7D32</color>
+    <color name="accent_darker">#1B5E20</color>
+    <color name="orange">#FF9800</color>
+    <color name="orange_dark">#F57C00</color>
+    <color name="danger">#D74E46</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>
