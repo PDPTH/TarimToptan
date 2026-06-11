@@ -1,54 +1,27 @@
-# Mobil Backend (REST API Bağlantısı) Görev Dağılımı
+# Mobil Back-End
 
-**REST API Adresi:** [api.yazmuh.com](https://api.yazmuh.com)
+Bu bölüm TarımToptan mobil uygulamasının REST API bağlantı görevlerini içerir. Mobil uygulama `android-java/` klasöründe Android Studio + Java ile geliştirilmiştir ve mevcut Node.js/Express API'ye bağlanır.
 
-Bu dokümanda, mobil uygulamanın REST API ile iletişimini sağlayan backend entegrasyon görevleri listelenmektedir. Her grup üyesi, kendisine atanan API endpoint'lerinin mobil uygulamadan çağrılması ve yönetilmesinden sorumludur.
+## REST API Adresi
 
----
+- Android emülatör: `http://10.0.2.2:3000/v1`
+- Bilgisayar tarayıcısı: `http://localhost:3000/v1`
+- Gerçek cihaz: bilgisayarın yerel IP adresi kullanılmalıdır.
 
-## Grup Üyelerinin Mobil Backend Görevleri
+## Grup Üyelerinin Mobil Back-End Görevleri
 
-1. [Ali Tutar'ın Mobil Backend Görevleri](Ali-Tutar/Ali-Tutar-Mobil-Backend-Gorevleri.md)
-2. [Grup Üyesi 2'nin Mobil Backend Görevleri](Grup-Uyesi-2/Grup-Uyesi-2-Mobil-Backend-Gorevleri.md)
-3. [Grup Üyesi 3'ün Mobil Backend Görevleri](Grup-Uyesi-3/Grup-Uyesi-3-Mobil-Backend-Gorevleri.md)
-4. [Grup Üyesi 4'ün Mobil Backend Görevleri](Grup-Uyesi-4/Grup-Uyesi-4-Mobil-Backend-Gorevleri.md)
-5. [Grup Üyesi 5'in Mobil Backend Görevleri](Grup-Uyesi-5/Grup-Uyesi-5-Mobil-Backend-Gorevleri.md)
-6. [Grup Üyesi 6'nın Mobil Backend Görevleri](Grup-Uyesi-6/Grup-Uyesi-6-Mobil-Backend-Gorevleri.md)
+1. [Süleyman Buğra Çetin Mobil Back-End Görevleri](Suleyman-Bugra-Cetin/Suleyman-Mobil-Backend-Gorevleri.md)
+2. [Umut Can Bayar Mobil Back-End Görevleri](umut-can-bayar/umut-can-bayar-Mobil-Backend-Gorevleri.md)
+3. [Aykhan Bayramov Mobil Back-End Görevleri](aykhan-bayramov/Aykhan-Bayramov-Mobil-Backend-Gorevleri.md)
 
----
+## API Bağlantı Yapısı
 
-## Genel Mobil Backend Prensipleri
+| Alan | Java Dosyası | API Kapsamı |
+| --- | --- | --- |
+| Hesap | `android-java/app/src/main/java/com/tarimtoptan/android/features/account/AccountFeature.java` | Auth, kullanıcı, üretici |
+| Ürünler | `android-java/app/src/main/java/com/tarimtoptan/android/features/products/ProductsFeature.java` | Ürün, stok, yorum |
+| Sepet ve sipariş | `android-java/app/src/main/java/com/tarimtoptan/android/features/checkout/CheckoutFeature.java` | Sepet, sipariş, adres |
 
-### 1. HTTP Client Yapılandırması
-- **Base URL:** `https://api.yazmuh.com/v1`
-- **Timeout:** Request timeout 30 saniye, connect timeout 10 saniye
-- **Headers:** 
-  - `Content-Type: application/json`
-  - `Authorization: Bearer {token}` (gerekli endpoint'lerde)
+## Kanıt Videosu Notu
 
-### 2. Authentication Yönetimi
-- JWT token'ları secure storage'da saklama
-- Token refresh mekanizması implementasyonu
-- Otomatik token yenileme (401 durumunda)
-- Logout durumunda token temizleme
-
-### 3. Error Handling
-- Network hataları (timeout, connection error)
-- HTTP status kodlarına göre uygun mesajlar gösterme
-- Retry mekanizması (network hatalarında)
-- Offline durum yönetimi
-
-### 4. Caching Stratejisi
-- GET istekleri için response caching
-- Cache invalidation (PUT/DELETE sonrası)
-- Offline-first yaklaşımı (mümkün olduğunda)
-
-### 5. Loading States
-- Request başlangıcında loading indicator
-- Başarılı/başarısız durum bildirimleri
-- Optimistic updates (kullanıcı deneyimi için)
-
-### 6. Logging ve Debugging
-- API request/response logging (development modunda)
-- Error logging ve crash reporting
-- Network interceptor kullanımı
+Her üye kendi sayfasına mobil back-end kanıt videosu eklemelidir. Videoda mobil uygulamadan REST API isteğinin gönderildiği ve işlemin gerçekleştiği net olarak gösterilmelidir.

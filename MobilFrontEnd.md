@@ -1,66 +1,29 @@
-# Mobil Frontend Görev Dağılımı
+# Mobil Front-End
 
-Bu dokümanda, mobil uygulamanın kullanıcı arayüzü (UI) ve kullanıcı deneyimi (UX) görevleri listelenmektedir. Her grup üyesi, kendisine atanan ekranların tasarımı, implementasyonu ve kullanıcı etkileşimlerinden sorumludur.
+Bu bölüm TarımToptan mobil uygulamasının Android Studio + Java ile hazırlanan ön yüz görevlerini içerir.
 
----
+## Mobil Uygulama Konumu
 
-## Grup Üyelerinin Mobil Frontend Görevleri
+- Native Android proje klasörü: `android-java/`
+- Android Studio'da açılacak klasör: `android-java`
+- Ana ekran: `android-java/app/src/main/java/com/tarimtoptan/android/MainActivity.java`
 
-1. [Ali Tutar'ın Mobil Frontend Görevleri](Ali-Tutar/Ali-Tutar-Mobil-Frontend-Gorevleri.md)
-2. [Grup Üyesi 2'nin Mobil Frontend Görevleri](Grup-Uyesi-2/Grup-Uyesi-2-Mobil-Frontend-Gorevleri.md)
-3. [Grup Üyesi 3'ün Mobil Frontend Görevleri](Grup-Uyesi-3/Grup-Uyesi-3-Mobil-Frontend-Gorevleri.md)
-4. [Grup Üyesi 4'ün Mobil Frontend Görevleri](Grup-Uyesi-4/Grup-Uyesi-4-Mobil-Frontend-Gorevleri.md)
-5. [Grup Üyesi 5'in Mobil Frontend Görevleri](Grup-Uyesi-5/Grup-Uyesi-5-Mobil-Frontend-Gorevleri.md)
-6. [Grup Üyesi 6'nın Mobil Frontend Görevleri](Grup-Uyesi-6/Grup-Uyesi-6-Mobil-Frontend-Gorevleri.md)
+## Uygulama Ekranları
 
----
+Uygulama son kullanıcıya tek bir mobil alışveriş uygulaması olarak görünür:
 
-## Genel Mobil Frontend Prensipleri
+1. **Ana Sayfa:** web sitesindeki tasarıma benzer logo, hero alanı, keşfet/üye ol butonları ve istatistik kartları
+2. **Mobil Menü:** sol üstteki üç çizgi butonundan Ürünler, Üreticiler, Sepet, Siparişlerim ve Ürün Ekle ekranlarına geçiş
+3. **Hesap:** kayıt, giriş, profil, şifre sıfırlama, üretici liste/detay
+4. **Ürünler:** ürün liste/detay, ürün ekleme/güncelleme/silme, stok ve yorum
+5. **Sepet:** sepet, adres, sipariş oluşturma ve iptal
 
-### 1. Tasarım Sistemi
-- **Renk Paleti:** Tutarlı renk kullanımı (primary, secondary, error, success)
-- **Tipografi:** Okunabilir font boyutları ve ağırlıkları
-- **Spacing:** Tutarlı padding ve margin değerleri (8dp/8pt grid sistemi)
-- **Iconography:** Standart icon seti kullanımı (Material Icons/SF Symbols)
+## Grup Üyelerinin Mobil Front-End Görevleri
 
-### 2. Responsive Tasarım
-- Farklı ekran boyutlarına uyum (phone, tablet)
-- Landscape ve portrait mod desteği
-- Safe area desteği (notch, status bar)
+1. [Süleyman Buğra Çetin Mobil Front-End Görevleri](Suleyman-Bugra-Cetin/Suleyman-Mobil-Frontend-Gorevleri.md)
+2. [Umut Can Bayar Mobil Front-End Görevleri](umut-can-bayar/umut-can-bayar-Mobil-Frontend-Gorevleri.md)
+3. [Aykhan Bayramov Mobil Front-End Görevleri](aykhan-bayramov/Aykhan-Bayramov-Mobil-Frontend-Gorevleri.md)
 
-### 3. Kullanıcı Deneyimi (UX)
-- **Loading States:** Skeleton screens, progress indicators
-- **Error Handling:** Kullanıcı dostu hata mesajları
-- **Empty States:** Boş durumlar için bilgilendirici mesajlar
-- **Feedback:** Kullanıcı aksiyonlarına anında geri bildirim (toast, snackbar)
+## Kanıt Videosu Notu
 
-### 4. Erişilebilirlik (Accessibility)
-- Content descriptions ve labels
-- Touch target boyutları (min 44x44dp/pt)
-- Screen reader desteği
-- Yüksek kontrast modu desteği
-- Font scaling desteği
-
-### 5. Performans
-- Lazy loading (liste görünümleri için)
-- Image optimization ve caching
-- Smooth animations (60 FPS hedefi)
-- Memory management
-
-### 6. Navigasyon
-- Tutarlı navigation pattern (bottom navigation, drawer, tabs)
-- Deep linking desteği
-- Back button handling
-- Navigation state yönetimi
-
-### 7. Form Yönetimi
-- Real-time validation
-- Error mesajları alan altında gösterilmesi
-- Keyboard handling (dismiss, next field focus)
-- Form state persistence (opsiyonel)
-
-### 8. Platform Özellikleri
-- **Android:** Material Design 3 guidelines
-- **iOS:** Human Interface Guidelines
-- Platform-specific UI patterns kullanımı
-- Native feel sağlanması
+Her üye kendi sayfasına mobil front-end kanıt videosu eklemelidir. Videoda önce gereksinim adı söylenmeli, sonra ilgili mobil ekran Android emülatör veya gerçek cihazda gösterilmelidir.
