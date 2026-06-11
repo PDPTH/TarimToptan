@@ -23,7 +23,7 @@ public class ApiClient {
 
     // Emülatör için: "http://10.0.2.2:3000/v1"
     // Gerçek telefon için: bilgisayarın WiFi IP adresi
-    public static final String API_BASE_URL = "http://192.168.1.102:3000/v1";
+    public static final String API_BASE_URL = "http://10.0.2.2:3000/v1";
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
